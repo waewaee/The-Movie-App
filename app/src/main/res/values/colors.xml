@@ -357,10 +357,11 @@
 
 
 
-    <color name="colorPrimary">#ff5252</color>
-    <color name="colorPrimaryDark">#c50e29</color>
-    <color name="colorAccent">#ff867f</color>
+    <color name="colorPrimary">#1f2532</color>
+    <color name="colorPrimaryDark">#161c24</color>
+    <color name="colorPrimaryLight">#1f2a33</color>
+    <color name="colorAccent">#e7b943</color>
 
     <color name="primary_text">#212121</color>
-    <color name="secondary_text">#757575</color>
+    <color name="secondary_text">#535968</color>
 </resources>

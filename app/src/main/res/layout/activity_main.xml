@@ -132,6 +132,7 @@
                 android:layout_marginTop="@dimen/margin_medium_3"/>
 
             <FrameLayout
+                android:id="@+id/flMoviesByGenre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimaryDark"
@@ -146,6 +147,37 @@
                     layout="@layout/view_pod_movie_list"/>
 
             </FrameLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvShowCaseLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_showcases"
+                android:textColor="@color/secondary_text"
+                android:textStyle="bold"
+                android:layout_below="@id/flMoviesByGenre"
+                android:layout_marginTop="@dimen/margin_medium_3"
+                android:layout_marginStart="@dimen/margin_medium_2"/>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvMoreShowCaseLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_more_showcases"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:layout_alignBaseline="@id/tvShowCaseLabel"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="@dimen/margin_medium_2"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvShowCase"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/view_item_showcase"
+                android:layout_below="@id/tvMoreShowCaseLabel"
+                android:paddingEnd="@dimen/margin_medium_2"
+                android:clipToPadding="false"/>
 
         </RelativeLayout>
 

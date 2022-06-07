@@ -3,16 +3,19 @@ package com.waewaee.themovieapp.activities
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.waewaee.themovieapp.R
 import com.waewaee.themovieapp.adapters.BannerAdapter
+import com.waewaee.themovieapp.adapters.ShowcaseAdapter
 import com.waewaee.themovieapp.dummy.dummyGenreList
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var mBannerAdapter: BannerAdapter
+    lateinit var mShowcaseAdapter: ShowcaseAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +25,8 @@ class MainActivity : AppCompatActivity() {
         setUpToolbar()
         setUpBannerViewPager()
         setUpGenreTabLayout()
+        setUpShowcaseRecyclerView()
+
         setUpListeners()
 
     }
@@ -68,6 +73,12 @@ class MainActivity : AppCompatActivity() {
                 tabLayoutGenre.addTab(this)
             }
         }
+    }
+
+    private fun setUpShowcaseRecyclerView() {
+        mShowcaseAdapter = ShowcaseAdapter()
+        rvShowCase.adapter = mShowcaseAdapter
+        rvShowCase.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

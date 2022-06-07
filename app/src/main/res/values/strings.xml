@@ -5,4 +5,6 @@
     <string name="lbl_best_popular_films_and_serials">BEST POPULAR FILMS AND SERIALS</string>
     <string name="lbl_check_movie_showtimes">Check Movie\nShowtimes</string>
     <string name="lbl_see_more"><u>SEE MORE</u></string>
+    <string name="lbl_showcases">SHOWCASES</string>
+    <string name="lbl_more_showcases"><u>MORE SHOWCASES</u></string>
 </resources>

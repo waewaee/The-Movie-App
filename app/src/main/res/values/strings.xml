@@ -2,4 +2,7 @@
     <string name="app_name">TheMovieApp</string>
     <string name="lbl_action_search">Search</string>
     <string name="lbl_title_home">Discover</string>
+    <string name="lbl_best_popular_films_and_serials">BEST POPULAR FILMS AND SERIALS</string>
+    <string name="lbl_check_movie_showtimes">Check Movie\nShowtimes</string>
+    <string name="lbl_see_more"><u>SEE MORE</u></string>
 </resources>

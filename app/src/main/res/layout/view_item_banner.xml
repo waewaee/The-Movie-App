@@ -38,6 +38,7 @@
             android:backgroundTint="@color/colorAccent"
             style="@style/Widget.MaterialComponents.Button.Icon"
             app:icon="@drawable/ic_baseline_play_arrow_black_24dp"
+            app:iconTint="@color/black"
             app:cornerRadius="@dimen/margin_large"
             app:iconPadding="0dp"
             android:insetTop="0dp"

@@ -3,7 +3,7 @@
     android:layout_width="@dimen/width_showcase"
     android:layout_height="@dimen/height_showcase"
     android:layout_marginStart="@dimen/margin_medium_2"
-    android:layout_marginVertical="@dimen/margin_medium_2"
+    android:layout_marginVertical="@dimen/margin_card_medium_2"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -24,6 +24,7 @@
         android:elevation="@dimen/margin_medium"
         style="@style/Widget.MaterialComponents.Button.Icon"
         app:icon="@drawable/ic_baseline_play_arrow_black_24dp"
+        app:iconTint="@color/black"
         app:cornerRadius="@dimen/margin_large"
         app:iconPadding="0dp"
         android:insetTop="0dp"

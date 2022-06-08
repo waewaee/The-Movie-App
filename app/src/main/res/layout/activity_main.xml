@@ -156,7 +156,7 @@
                 android:textColor="@color/secondary_text"
                 android:textStyle="bold"
                 android:layout_below="@id/flMoviesByGenre"
-                android:layout_marginTop="@dimen/margin_medium_3"
+                android:layout_marginTop="@dimen/margin_xlarge"
                 android:layout_marginStart="@dimen/margin_medium_2"/>
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -178,6 +178,14 @@
                 android:layout_below="@id/tvMoreShowCaseLabel"
                 android:paddingEnd="@dimen/margin_medium_2"
                 android:clipToPadding="false"/>
+
+            <include
+                android:id="@+id/vpActorList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                layout="@layout/view_pod_actor_list"
+                android:layout_below="@id/rvShowCase"
+                android:layout_marginTop="@dimen/margin_medium_3"/>
 
         </RelativeLayout>
 

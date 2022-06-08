@@ -39,5 +39,7 @@
     <dimen name="height_check_movie_show_time">180dp</dimen>
     <dimen name="width_showcase">240dp</dimen>
     <dimen name="height_showcase">180dp</dimen>
+    <dimen name="width_best_actor">136dp</dimen>
+    <dimen name="height_best_actor">180dp</dimen>
 
 </resources>

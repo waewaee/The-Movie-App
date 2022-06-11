@@ -21,7 +21,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        //Appbar Leading Icon
         setUpToolbar()
         setUpBannerViewPager()
         setUpGenreTabLayout()
@@ -57,6 +56,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setUpToolbar() {
         setSupportActionBar(toolbar)
+        //Appbar Leading Icon
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)
     }

@@ -31,7 +31,7 @@
         android:id="@+id/rvBestActors"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/view_item_best_actor"
+        tools:listitem="@layout/view_item_actor"
         android:layout_below="@id/tvBestActors"
         android:layout_marginTop="@dimen/margin_card_medium_2"
         android:paddingEnd="@dimen/margin_medium_2"

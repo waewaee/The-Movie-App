@@ -70,7 +70,7 @@
                 android:layout_marginStart="@dimen/margin_medium_2"/>
 
             <include
-                android:id="@+id/vpMovieList"
+                android:id="@+id/vpBestPopularMovieList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 layout="@layout/view_pod_movie_list"
@@ -80,7 +80,7 @@
                 android:id="@+id/rlCheckMovieShowtime"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/height_check_movie_show_time"
-                android:layout_below="@id/vpMovieList"
+                android:layout_below="@id/vpBestPopularMovieList"
                 android:background="@color/colorPrimaryLight"
                 android:layout_marginTop="@dimen/margin_large"
                 android:layout_marginHorizontal="@dimen/margin_medium_2">
@@ -116,7 +116,6 @@
                     android:layout_centerVertical="true"
                     android:layout_marginEnd="@dimen/margin_xlarge"/>
 
-
             </RelativeLayout>
 
             <com.google.android.material.tabs.TabLayout
@@ -141,7 +140,7 @@
                 android:paddingBottom="@dimen/margin_large">
 
                 <include
-                    android:id="@+id/vpMovieList"
+                    android:id="@+id/vpMoviesByGenre"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     layout="@layout/view_pod_movie_list"/>

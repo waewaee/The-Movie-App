@@ -9,25 +9,40 @@ import com.google.android.material.tabs.TabLayout
 import com.waewaee.themovieapp.R
 import com.waewaee.themovieapp.adapters.BannerAdapter
 import com.waewaee.themovieapp.adapters.ShowcaseAdapter
+import com.waewaee.themovieapp.delegates.BannerViewHolderDelegate
+import com.waewaee.themovieapp.delegates.MovieViewHolderDelegate
+import com.waewaee.themovieapp.delegates.ShowcaseViewHolderDelegate
 import com.waewaee.themovieapp.dummy.dummyGenreList
+import com.waewaee.themovieapp.views.pods.MovieListViewPod
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseViewHolderDelegate, MovieViewHolderDelegate {
 
     lateinit var mBannerAdapter: BannerAdapter
     lateinit var mShowcaseAdapter: ShowcaseAdapter
+
+    lateinit var mBestPopularMovieListViewPod: MovieListViewPod
+    lateinit var mMoviesByGenreViewPod: MovieListViewPod
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         setUpToolbar()
+        setUpViewPods()
         setUpBannerViewPager()
         setUpGenreTabLayout()
         setUpShowcaseRecyclerView()
 
         setUpListeners()
+    }
 
+    private fun setUpViewPods() {
+        mBestPopularMovieListViewPod = vpBestPopularMovieList as MovieListViewPod
+        mBestPopularMovieListViewPod.setUpMovieListViewPod(this)
+
+        mMoviesByGenreViewPod = vpMoviesByGenre as MovieListViewPod
+        mMoviesByGenreViewPod.setUpMovieListViewPod(this)
     }
 
     private fun setUpListeners() {
@@ -48,7 +63,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUpBannerViewPager() {
-        mBannerAdapter = BannerAdapter()
+        mBannerAdapter = BannerAdapter(this)
         viewPagerBanner.adapter = mBannerAdapter
 
         dotsIndicatorBanner.attachTo(viewPagerBanner)
@@ -76,7 +91,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setUpShowcaseRecyclerView() {
-        mShowcaseAdapter = ShowcaseAdapter()
+        mShowcaseAdapter = ShowcaseAdapter(this)
         rvShowCase.adapter = mShowcaseAdapter
         rvShowCase.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
     }
@@ -84,5 +99,17 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_home, menu)
         return true
+    }
+
+    override fun onTapMovieFromBanner() {
+        Snackbar.make(window.decorView, "Tapped Movie from Banner", Snackbar.LENGTH_SHORT).show()
+    }
+
+    override fun onTapMovieFromShowcase() {
+        Snackbar.make(window.decorView, "Tapped Movie from Showcase", Snackbar.LENGTH_SHORT).show()
+    }
+
+    override fun onTapMovie() {
+        Snackbar.make(window.decorView, "Tapped Movie from Best Popular Movies or Genres", Snackbar.LENGTH_SHORT).show()
     }
 }

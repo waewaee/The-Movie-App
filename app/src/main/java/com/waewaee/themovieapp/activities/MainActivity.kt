@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseView
         setUpListeners()
     }
 
+    // --- View Pods ---
     private fun setUpViewPods() {
         mBestPopularMovieListViewPod = vpBestPopularMovieList as MovieListViewPod
         mBestPopularMovieListViewPod.setUpMovieListViewPod(this)
@@ -45,6 +46,7 @@ class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseView
         mMoviesByGenreViewPod.setUpMovieListViewPod(this)
     }
 
+    // --- Listeners ---
     private fun setUpListeners() {
 
         // Genre Tab Layout
@@ -62,6 +64,7 @@ class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseView
 
     }
 
+    // --- Banner ---
     private fun setUpBannerViewPager() {
         mBannerAdapter = BannerAdapter(this)
         viewPagerBanner.adapter = mBannerAdapter
@@ -69,6 +72,7 @@ class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseView
         dotsIndicatorBanner.attachTo(viewPagerBanner)
     }
 
+    // --- Toolbar ---
     private fun setUpToolbar() {
         setSupportActionBar(toolbar)
         //Appbar Leading Icon
@@ -76,6 +80,7 @@ class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseView
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_menu)
     }
 
+    // --- Tab Layout ---
     private fun setUpGenreTabLayout() {
         dummyGenreList.forEach {
 //            val tab = tabLayoutGenre.newTab()
@@ -90,26 +95,32 @@ class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseView
         }
     }
 
+    // --- Showcase ---
     private fun setUpShowcaseRecyclerView() {
         mShowcaseAdapter = ShowcaseAdapter(this)
         rvShowCase.adapter = mShowcaseAdapter
         rvShowCase.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
     }
 
+    // --- Menu ---
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_home, menu)
         return true
     }
 
     override fun onTapMovieFromBanner() {
-        Snackbar.make(window.decorView, "Tapped Movie from Banner", Snackbar.LENGTH_SHORT).show()
+//        Snackbar.make(window.decorView, "Tapped Movie from Banner", Snackbar.LENGTH_SHORT).show()
+        startActivity(MovieDetailsActivity.newIntent(this))
     }
 
     override fun onTapMovieFromShowcase() {
-        Snackbar.make(window.decorView, "Tapped Movie from Showcase", Snackbar.LENGTH_SHORT).show()
+//        Snackbar.make(window.decorView, "Tapped Movie from Showcase", Snackbar.LENGTH_SHORT).show()
+        startActivity(MovieDetailsActivity.newIntent(this))
     }
 
     override fun onTapMovie() {
-        Snackbar.make(window.decorView, "Tapped Movie from Best Popular Movies or Genres", Snackbar.LENGTH_SHORT).show()
+//        Snackbar.make(window.decorView, "Tapped Movie from Best Popular Movies or Genres", Snackbar.LENGTH_SHORT).show()
+        startActivity(MovieDetailsActivity.newIntent(this))
     }
+
 }

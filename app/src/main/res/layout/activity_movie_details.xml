@@ -113,7 +113,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimaryDark"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:paddingBottom="@dimen/margin_medium_2">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -278,12 +279,173 @@
                 android:layout_below="@id/btnPlayTrailer"
                 android:layout_marginTop="@dimen/margin_large"/>
 
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tvAboutFilm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbl_about_film"
+                android:textColor="@color/secondary_text"
+                android:textStyle="bold"
+                android:layout_below="@id/vpActorsInMovie"
+                android:layout_marginStart="@dimen/margin_medium_2"
+                android:layout_marginTop="@dimen/margin_medium_3"/>
+
+            <LinearLayout
+                android:id="@+id/llOriginalTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:layout_below="@id/tvAboutFilm"
+                android:layout_marginTop="@dimen/margin_medium_2"
+                android:layout_marginHorizontal="@dimen/margin_medium_2">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvOriginalTitleLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="@string/lbl_original_title"
+                    android:textColor="@color/secondary_text"
+                    android:gravity="end"
+                    android:paddingEnd="@dimen/margin_medium_2"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvOriginalTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:text="@string/lbl_movie_name"
+                    android:textColor="@color/white"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llMovieType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:layout_below="@id/llOriginalTitle"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginHorizontal="@dimen/margin_medium_2">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvMovieTypeLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="@string/lbl_movie_type"
+                    android:textColor="@color/secondary_text"
+                    android:gravity="end"
+                    android:paddingEnd="@dimen/margin_medium_2"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvMovieType"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:text="Family, Fantasy, Adventure"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llProduction"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:layout_below="@id/llMovieType"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginHorizontal="@dimen/margin_medium_2">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvProductionLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="@string/lbl_production"
+                    android:textColor="@color/secondary_text"
+                    android:gravity="end"
+                    android:paddingEnd="@dimen/margin_medium_2"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvProduction"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:text="United Kingdom, USA"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llPremiere"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:layout_below="@id/llProduction"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginHorizontal="@dimen/margin_medium_2">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPremiereLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="@string/lbl_premiere"
+                    android:textColor="@color/secondary_text"
+                    android:gravity="end"
+                    android:paddingEnd="@dimen/margin_medium_2"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvPremiere"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:text="8 November 2016 (World)"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llDescription"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="1"
+                android:orientation="horizontal"
+                android:layout_below="@id/llPremiere"
+                android:layout_marginTop="@dimen/margin_medium"
+                android:layout_marginHorizontal="@dimen/margin_medium_2">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvDescriptionLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.3"
+                    android:text="@string/lbl_description"
+                    android:textColor="@color/secondary_text"
+                    android:gravity="end"
+                    android:paddingEnd="@dimen/margin_medium_2"/>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvDescription"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.7"
+                    android:text="When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and one strange little girl."
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
             <include
                 android:id="@+id/vpCreatorsOfMovie"
                 layout="@layout/view_pod_actor_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/vpActorsInMovie"
+                android:layout_below="@id/llDescription"
                 android:layout_marginTop="@dimen/margin_large"/>
 
             <View

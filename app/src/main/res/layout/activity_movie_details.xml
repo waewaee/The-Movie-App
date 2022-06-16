@@ -139,8 +139,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/colorPrimaryDark"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:paddingBottom="@dimen/margin_medium_2">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -161,7 +160,7 @@
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@id/ivTime"
                 android:text="2hr 13min"
-                android:textColor="@color/white"
+                android:textColor="@color/md_grey_500"
                 android:textStyle="bold"
                 android:layout_marginStart="@dimen/margin_medium"
                 android:paddingTop="@dimen/margin_medium"/>
@@ -171,7 +170,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/margin_xlarge"
                 android:text="Family"
-                android:textColor="@color/white"
+                android:textColor="@color/md_grey_500"
                 android:gravity="center"
                 android:paddingHorizontal="@dimen/margin_medium"
                 android:layout_toEndOf="@id/tvTime"
@@ -183,7 +182,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/margin_xlarge"
                 android:text="Fantasy"
-                android:textColor="@color/white"
+                android:textColor="@color/md_grey_500"
                 android:gravity="center"
                 android:paddingHorizontal="@dimen/margin_medium"
                 android:layout_toEndOf="@id/tvFirstGenre"
@@ -195,7 +194,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/margin_xlarge"
                 android:text="Adventure"
-                android:textColor="@color/white"
+                android:textColor="@color/md_grey_500"
                 android:gravity="center"
                 android:paddingHorizontal="@dimen/margin_medium"
                 android:layout_toEndOf="@id/tvSecondGenre"
@@ -289,7 +288,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/lbl_rate_movie"
-                    android:textColor="@color/white"
+                    android:textColor="@color/md_grey_300"
                     android:textStyle="bold"
                     android:layout_toEndOf="@id/ivRateMovie"
                     android:layout_marginStart="@dimen/margin_medium"
@@ -342,7 +341,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:text="@string/lbl_movie_name"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/md_grey_500"/>
 
             </LinearLayout>
 
@@ -372,7 +371,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:text="Family, Fantasy, Adventure"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/md_grey_500" />
 
             </LinearLayout>
 
@@ -402,7 +401,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:text="United Kingdom, USA"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/md_grey_500" />
 
             </LinearLayout>
 
@@ -432,7 +431,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:text="8 November 2016 (World)"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/md_grey_500" />
 
             </LinearLayout>
 
@@ -462,7 +461,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.7"
                     android:text="When a young boy vanishes, a small town uncovers a mystery involving secret experiments, terrifying supernatural forces and one strange little girl."
-                    android:textColor="@color/white" />
+                    android:textColor="@color/md_grey_500" />
 
             </LinearLayout>
 
@@ -472,11 +471,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/llDescription"
-                android:layout_marginTop="@dimen/margin_large"/>
+                android:layout_marginTop="@dimen/margin_large"
+                android:layout_marginBottom="@dimen/margin_large"/>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1000dp" />
+<!--            <View-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="1000dp" />-->
 
         </RelativeLayout>
 

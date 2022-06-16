@@ -365,4 +365,5 @@
     <color name="primary_text">#212121</color>
     <color name="secondary_text">#535968</color>
     <color name="color_show_case_overlay_foreground">#26000000</color>
+    <color name="color_transparent_overlay">#80000000</color>
 </resources>

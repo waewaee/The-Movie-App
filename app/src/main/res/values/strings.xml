@@ -10,4 +10,11 @@
     <string name="lbl_best_actors">BEST ACTORS</string>
     <string name="lbl_more_actors"><u>MORE ACTORS</u></string>
     <string name="lbl_movie_name">Fantastic Beasts And Where To Find Them</string>
+    <string name="lbl_storyline">STORYLINE</string>
+    <string name="lbl_movie_overview">The first season begins in November 1983, when researchers at Hawkins National Laboratory open a rift to the \'Upside Down\', an alternate dimension that reflects onto the real world. A monstrous humanoid creature escapes and abducts a boy named Will Byers and a teenage girl named Barbara Holland.</string>
+    <string name="lbl_play_trailer">PLAY TRAILER</string>
+    <string name="lbl_rate_movie">RATE MOVIE</string>
+    <string name="lbl_actors_in_movie">ACTORS</string>
+    <string name="lbl_creators_of_movie">CREATORS</string>
+    <string name="lbl_more_creators"><u>MORE CREATORS</u></string>
 </resources>

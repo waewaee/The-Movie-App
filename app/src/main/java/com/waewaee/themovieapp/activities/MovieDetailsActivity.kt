@@ -26,6 +26,13 @@ class MovieDetailsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_movie_details)
 
         setUpViewPods()
+        setUpListeners()
+    }
+
+    private fun setUpListeners() {
+        btnBack.setOnClickListener {
+            super.onBackPressed()
+        }
     }
 
     private fun setUpViewPods() {
@@ -36,12 +43,12 @@ class MovieDetailsActivity : AppCompatActivity() {
             ""
         )
 
-//        creatorsViewPod=vpCreatorsOfMovie as ActorListViewPod
-//        creatorsViewPod.setUpActorViewPod(
-//            R.color.colorPrimary,
-//            getString(R.string.lbl_creators_of_movie),
-//            getString(R.string.lbl_more_creators)
-//
-//        )
+        creatorsViewPod=vpCreatorsOfMovie as ActorListViewPod
+        creatorsViewPod.setUpActorViewPod(
+            R.color.colorPrimary,
+            getString(R.string.lbl_creators_of_movie),
+            getString(R.string.lbl_more_creators)
+
+        )
     }
 }

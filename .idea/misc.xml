@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/AndroidStudioProjects/TheMovieApp/app/src/main/res/drawable/background_round_back_btn.xml" value="0.1325" />
+        <entry key="..\:/AndroidStudioProjects/TheMovieApp/app/src/main/res/drawable/background_round_back_button.xml" value="0.1325" />
         <entry key="..\:/AndroidStudioProjects/TheMovieApp/app/src/main/res/drawable/background_round_genre_chip.xml" value="0.1325" />
         <entry key="..\:/AndroidStudioProjects/TheMovieApp/app/src/main/res/drawable/background_round_play_trailer.xml" value="0.1325" />
         <entry key="..\:/AndroidStudioProjects/TheMovieApp/app/src/main/res/drawable/background_round_rate_movie.xml" value="0.1325" />

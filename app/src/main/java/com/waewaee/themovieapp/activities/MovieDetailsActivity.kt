@@ -38,16 +38,16 @@ class MovieDetailsActivity : AppCompatActivity() {
     private fun setUpViewPods() {
         actorsViewPod = vpActorsInMovie as ActorListViewPod
         actorsViewPod.setUpActorViewPod(
-            R.color.colorPrimary,
-            getString(R.string.lbl_actors_in_movie),
-            ""
+            backgroundColorReference = R.color.colorPrimary,
+            titleText = getString(R.string.lbl_actors_in_movie),
+            moreTitleText = ""
         )
 
         creatorsViewPod=vpCreatorsOfMovie as ActorListViewPod
         creatorsViewPod.setUpActorViewPod(
-            R.color.colorPrimary,
-            getString(R.string.lbl_creators_of_movie),
-            getString(R.string.lbl_more_creators)
+            backgroundColorReference = R.color.colorPrimary,
+            titleText = getString(R.string.lbl_creators_of_movie),
+            moreTitleText = getString(R.string.lbl_more_creators)
 
         )
     }

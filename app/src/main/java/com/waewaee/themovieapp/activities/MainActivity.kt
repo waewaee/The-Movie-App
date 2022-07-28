@@ -13,6 +13,7 @@ import com.waewaee.themovieapp.delegates.BannerViewHolderDelegate
 import com.waewaee.themovieapp.delegates.MovieViewHolderDelegate
 import com.waewaee.themovieapp.delegates.ShowcaseViewHolderDelegate
 import com.waewaee.themovieapp.dummy.dummyGenreList
+import com.waewaee.themovieapp.network.dataagents.MovieDataAgentImpl
 import com.waewaee.themovieapp.views.pods.MovieListViewPod
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -35,6 +36,8 @@ class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseView
         setUpShowcaseRecyclerView()
 
         setUpListeners()
+
+        MovieDataAgentImpl.getNowPlayingMovies()
     }
 
     // --- View Pods ---

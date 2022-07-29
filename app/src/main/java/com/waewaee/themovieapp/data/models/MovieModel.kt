@@ -1,10 +1,10 @@
-package com.waewaee.themovieapp.network.dataagents
+package com.waewaee.themovieapp.data.models
 
 import com.waewaee.themovieapp.data.vos.MovieVO
 
-interface MovieDataAgent {
+interface MovieModel {
     fun getNowPlayingMovies(
-        onSuccess : (List<MovieVO>) -> Unit,
+        onSuccess : (List<MovieVO>)  -> Unit,
         onFailure : (String) -> Unit
     )
 }

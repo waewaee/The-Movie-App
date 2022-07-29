@@ -9,11 +9,14 @@ import com.google.android.material.tabs.TabLayout
 import com.waewaee.themovieapp.R
 import com.waewaee.themovieapp.adapters.BannerAdapter
 import com.waewaee.themovieapp.adapters.ShowcaseAdapter
+import com.waewaee.themovieapp.data.models.MovieModel
+import com.waewaee.themovieapp.data.models.MovieModelImpl
 import com.waewaee.themovieapp.delegates.BannerViewHolderDelegate
 import com.waewaee.themovieapp.delegates.MovieViewHolderDelegate
 import com.waewaee.themovieapp.delegates.ShowcaseViewHolderDelegate
 import com.waewaee.themovieapp.dummy.dummyGenreList
 import com.waewaee.themovieapp.network.dataagents.MovieDataAgentImpl
+import com.waewaee.themovieapp.network.dataagents.OkHTTPDataAgentImpl
 import com.waewaee.themovieapp.views.pods.MovieListViewPod
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -25,6 +28,9 @@ class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseView
     lateinit var mBestPopularMovieListViewPod: MovieListViewPod
     lateinit var mMoviesByGenreViewPod: MovieListViewPod
 
+    // Model
+    private val mMovieModel: MovieModel = MovieModelImpl
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -34,10 +40,19 @@ class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseView
         setUpBannerViewPager()
         setUpGenreTabLayout()
         setUpShowcaseRecyclerView()
-
         setUpListeners()
 
-        MovieDataAgentImpl.getNowPlayingMovies()
+//        MovieDataAgentImpl.getNowPlayingMovies()
+//        OkHTTPDataAgentImpl.getNowPlayingMovies()
+
+        mMovieModel.getNowPlayingMovies(
+            onSuccess = {
+                mBannerAdapter.setNewData(it)
+            },
+            onFailure = {
+                // Show Error Msg
+            }
+        )
     }
 
     // --- View Pods ---

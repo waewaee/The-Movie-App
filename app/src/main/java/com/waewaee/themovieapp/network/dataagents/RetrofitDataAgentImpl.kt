@@ -2,7 +2,7 @@ package com.waewaee.themovieapp.network.dataagents
 
 import com.waewaee.themovieapp.data.vos.MovieVO
 import com.waewaee.themovieapp.network.responses.MovieListResponse
-import com.waewaee.themovieapp.network.responses.TheMovieApi
+import com.waewaee.themovieapp.network.TheMovieApi
 import com.waewaee.themovieapp.utils.BASE_URL
 import okhttp3.OkHttpClient
 import retrofit2.*

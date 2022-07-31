@@ -1,5 +1,6 @@
-package com.waewaee.themovieapp.network.responses
+package com.waewaee.themovieapp.network
 
+import com.waewaee.themovieapp.network.responses.MovieListResponse
 import com.waewaee.themovieapp.utils.API_GET_NOW_PLAYING
 import com.waewaee.themovieapp.utils.MOVIE_API_KEY
 import com.waewaee.themovieapp.utils.PARAM_API_KEY

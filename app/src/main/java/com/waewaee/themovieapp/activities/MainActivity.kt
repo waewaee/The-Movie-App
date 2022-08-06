@@ -42,6 +42,14 @@ class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseView
         setUpShowcaseRecyclerView()
         setUpListeners()
 
+        // Request Data
+        requestData()
+
+    }
+
+    private fun requestData() {
+
+        // Now Playing Movies
 //        MovieDataAgentImpl.getNowPlayingMovies()
 //        OkHTTPDataAgentImpl.getNowPlayingMovies()
 
@@ -53,6 +61,27 @@ class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseView
                 // Show Error Msg
             }
         )
+
+        // Popular Movies
+        mMovieModel.getPopularMovies(
+            onSuccess = {
+                mBestPopularMovieListViewPod.setData(it)
+            },
+            onFailure = {
+                // Show error msg
+            }
+        )
+
+    // Top Rated Movies
+        mMovieModel.getTopRatedMovies(
+            onSuccess = {
+                mShowcaseAdapter.setNewData(it)
+            },
+            onFailure = {
+                // Show error msg
+            }
+        )
+
     }
 
     // --- View Pods ---

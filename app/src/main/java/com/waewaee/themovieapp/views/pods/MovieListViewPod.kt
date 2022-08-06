@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.waewaee.themovieapp.adapters.MovieAdapter
+import com.waewaee.themovieapp.data.vos.MovieVO
 import com.waewaee.themovieapp.delegates.MovieViewHolderDelegate
 import kotlinx.android.synthetic.main.view_pod_movie_list.view.*
 
@@ -23,6 +24,10 @@ class MovieListViewPod @JvmOverloads constructor(
     fun setUpMovieListViewPod(delegate: MovieViewHolderDelegate) {
         setDelegate(delegate)
         setUpMovieRecyclerView()
+    }
+
+    fun setData(movieList: List<MovieVO>) {
+        mMovieAdapter.setNewData(movieList)
     }
 
     private fun setDelegate(delegate: MovieViewHolderDelegate) {

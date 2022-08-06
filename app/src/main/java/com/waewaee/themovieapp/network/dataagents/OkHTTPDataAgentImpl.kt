@@ -27,6 +27,17 @@ object OkHTTPDataAgentImpl: MovieDataAgent {
         GetNowPlayingMovieOkHTTPTask(mClient).execute()
     }
 
+    override fun getPopularMovies(onSuccess: (List<MovieVO>) -> Unit, onFailure: (String) -> Unit) {
+
+    }
+
+    override fun getTopRatedMovies(
+        onSuccess: (List<MovieVO>) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+
+    }
+
     class GetNowPlayingMovieOkHTTPTask(
         private val mOkHttpClient: OkHttpClient,
     ) : AsyncTask<Void, Void, MovieListResponse>() {

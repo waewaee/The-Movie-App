@@ -30,11 +30,61 @@ object RetrofitDataAgentImpl: MovieDataAgent {
     }
 
     override fun getNowPlayingMovies(
-        onSuccess : (List<MovieVO>)  -> Unit,
-        onFailure : (String) -> Unit
+        onSuccess: (List<MovieVO>) -> Unit,
+        onFailure: (String) -> Unit
     ) {
         mTheMovieApi?.getNowPlayingMovies()
-            ?.enqueue(object  : Callback<MovieListResponse> {
+            ?.enqueue(object : Callback<MovieListResponse> {
+                override fun onResponse(
+                    call: Call<MovieListResponse>,
+                    response: Response<MovieListResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        val movieList = response.body()?.results ?: listOf()
+                        onSuccess(movieList)
+                    } else {
+                        onFailure(response.message())
+                    }
+                }
+
+                override fun onFailure(call: Call<MovieListResponse>, t: Throwable) {
+                    onFailure(t.message ?: "")
+                }
+
+            })
+    }
+
+    override fun getPopularMovies(
+        onSuccess: (List<MovieVO>) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mTheMovieApi?.getPopularMovies()
+            ?.enqueue(object : Callback<MovieListResponse> {
+                override fun onResponse(
+                    call: Call<MovieListResponse>,
+                    response: Response<MovieListResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        val movieList = response.body()?.results ?: listOf()
+                        onSuccess(movieList)
+                    } else {
+                        onFailure(response.message())
+                    }
+                }
+
+                override fun onFailure(call: Call<MovieListResponse>, t: Throwable) {
+                    onFailure(t.message ?: "")
+                }
+
+            })
+    }
+
+    override fun getTopRatedMovies(
+        onSuccess: (List<MovieVO>) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mTheMovieApi?.getTopRatedMovies()
+            ?.enqueue(object : Callback<MovieListResponse> {
                 override fun onResponse(
                     call: Call<MovieListResponse>,
                     response: Response<MovieListResponse>

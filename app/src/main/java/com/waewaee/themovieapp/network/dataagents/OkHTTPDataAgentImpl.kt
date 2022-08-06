@@ -28,14 +28,14 @@ object OkHTTPDataAgentImpl: MovieDataAgent {
     }
 
     override fun getPopularMovies(onSuccess: (List<MovieVO>) -> Unit, onFailure: (String) -> Unit) {
-//        TODO("Not yet implemented")
+
     }
 
     override fun getTopRatedMovies(
         onSuccess: (List<MovieVO>) -> Unit,
         onFailure: (String) -> Unit
     ) {
-//        TODO("Not yet implemented")
+
     }
 
     class GetNowPlayingMovieOkHTTPTask(

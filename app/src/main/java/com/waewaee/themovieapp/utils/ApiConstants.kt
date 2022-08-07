@@ -9,6 +9,7 @@ const val API_GET_TOP_RATED_MOVIES = "/3/movie/top_rated"
 
 const val API_GET_GENRES = "/3/genre/movie/list"
 const val API_GET_MOVIES_BY_GENRE = "/3/discover/movie"
+const val API_GET_ACTORS = "/3/person/popular"
 
 
 // Params

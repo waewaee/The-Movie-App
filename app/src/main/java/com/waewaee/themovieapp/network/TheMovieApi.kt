@@ -1,5 +1,6 @@
 package com.waewaee.themovieapp.network
 
+import com.waewaee.themovieapp.network.responses.GetActorsResponse
 import com.waewaee.themovieapp.network.responses.GetGenresResponse
 import com.waewaee.themovieapp.network.responses.MovieListResponse
 import com.waewaee.themovieapp.utils.*
@@ -38,5 +39,10 @@ interface TheMovieApi {
         @Query(PARAM_API_KEY) apiKey : String = MOVIE_API_KEY
     ) : Call<MovieListResponse>
 
+    @GET(API_GET_ACTORS)
+    fun getActors(
+        @Query(PARAM_API_KEY) apiKey: String = MOVIE_API_KEY,
+        @Query(PARAM_PAGE) page: Int = 1,
+    ) : Call<GetActorsResponse>
 
 }

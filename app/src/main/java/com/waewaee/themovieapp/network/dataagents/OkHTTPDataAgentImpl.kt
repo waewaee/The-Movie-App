@@ -2,6 +2,7 @@ package com.waewaee.themovieapp.network.dataagents
 
 import android.os.AsyncTask
 import com.google.gson.Gson
+import com.waewaee.themovieapp.data.vos.ActorVO
 import com.waewaee.themovieapp.data.vos.GenreVO
 import com.waewaee.themovieapp.data.vos.MovieVO
 import com.waewaee.themovieapp.network.responses.MovieListResponse
@@ -49,6 +50,10 @@ object OkHTTPDataAgentImpl: MovieDataAgent {
         onFailure: (String) -> Unit
     ) {
 
+    }
+
+    override fun getActors(onSuccess: (List<ActorVO>) -> Unit, onFailure: (String) -> Unit) {
+        //
     }
 
     class GetNowPlayingMovieOkHTTPTask(

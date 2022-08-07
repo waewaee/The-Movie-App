@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.google.android.material.snackbar.Snackbar
 import com.waewaee.themovieapp.R
 import com.waewaee.themovieapp.views.pods.ActorListViewPod
 import com.waewaee.themovieapp.views.pods.MovieListViewPod
@@ -12,8 +13,13 @@ import kotlinx.android.synthetic.main.activity_movie_details.*
 class MovieDetailsActivity : AppCompatActivity() {
 
     companion object {
-        fun newIntent(context: Context): Intent {
-            return Intent(context, MovieDetailsActivity::class.java)
+
+        private val EXTRA_MOVIE_ID = "EXTRA_MOVIE_ID"
+
+        fun newIntent(context: Context, movieId: Int): Intent {
+            val intent = Intent(context, MovieDetailsActivity::class.java)
+            intent.putExtra(EXTRA_MOVIE_ID, movieId)
+            return intent
         }
     }
 
@@ -27,6 +33,9 @@ class MovieDetailsActivity : AppCompatActivity() {
 
         setUpViewPods()
         setUpListeners()
+
+        val movieId = intent?.getIntExtra(EXTRA_MOVIE_ID, 0)
+        Snackbar.make(window.decorView, "$movieId", Snackbar.LENGTH_SHORT).show()
     }
 
     private fun setUpListeners() {

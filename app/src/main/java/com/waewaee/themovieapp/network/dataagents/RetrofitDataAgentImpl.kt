@@ -1,9 +1,11 @@
 package com.waewaee.themovieapp.network.dataagents
 
+import com.waewaee.themovieapp.data.vos.ActorVO
 import com.waewaee.themovieapp.data.vos.GenreVO
 import com.waewaee.themovieapp.data.vos.MovieVO
 import com.waewaee.themovieapp.network.responses.MovieListResponse
 import com.waewaee.themovieapp.network.TheMovieApi
+import com.waewaee.themovieapp.network.responses.GetActorsResponse
 import com.waewaee.themovieapp.network.responses.GetGenresResponse
 import com.waewaee.themovieapp.utils.BASE_URL
 import okhttp3.OkHttpClient
@@ -152,6 +154,30 @@ object RetrofitDataAgentImpl : MovieDataAgent {
                 override fun onFailure(call: Call<MovieListResponse>, t: Throwable) {
                     onFailure(t.message ?: "")
 
+                }
+
+            })
+    }
+
+    override fun getActors(
+        onSuccess: (List<ActorVO>) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mTheMovieApi?.getActors()
+            ?.enqueue(object : Callback<GetActorsResponse> {
+                override fun onResponse(
+                    call: Call<GetActorsResponse>,
+                    response: Response<GetActorsResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        onSuccess(response.body()?.results ?: listOf())
+                    } else {
+                        onFailure(response.message())
+                    }
+                }
+
+                override fun onFailure(call: Call<GetActorsResponse>, t: Throwable) {
+                    onFailure(t.message ?: "")
                 }
 
             })

@@ -18,6 +18,7 @@ import com.waewaee.themovieapp.delegates.ShowcaseViewHolderDelegate
 import com.waewaee.themovieapp.dummy.dummyGenreList
 import com.waewaee.themovieapp.network.dataagents.MovieDataAgentImpl
 import com.waewaee.themovieapp.network.dataagents.OkHTTPDataAgentImpl
+import com.waewaee.themovieapp.views.pods.ActorListViewPod
 import com.waewaee.themovieapp.views.pods.MovieListViewPod
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseView
 
     lateinit var mBestPopularMovieListViewPod: MovieListViewPod
     lateinit var mMoviesByGenreViewPod: MovieListViewPod
+    lateinit var mActorListViewPod: ActorListViewPod
 
     // Model
     private val mMovieModel: MovieModel = MovieModelImpl
@@ -70,7 +72,7 @@ class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseView
         mMovieModel.getPopularMovies(
             onSuccess = {
                 mBestPopularMovieListViewPod.setData(it)
-                mMoviesByGenreViewPod.setData(it)
+//                mMoviesByGenreViewPod.setData(it)
             },
             onFailure = {
                 // Show error msg
@@ -103,6 +105,16 @@ class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseView
             }
         )
 
+        // Get Actors
+        mMovieModel.getActors(
+            onSuccess = {
+                mActorListViewPod.setData(it)
+            },
+            onFailure = {
+                // Show error msg
+            }
+        )
+
     }
 
     private fun getMoviesByGenre(genreId: Int) {
@@ -124,6 +136,8 @@ class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseView
 
         mMoviesByGenreViewPod = vpMoviesByGenre as MovieListViewPod
         mMoviesByGenreViewPod.setUpMovieListViewPod(this)
+
+        mActorListViewPod = vpActorList as ActorListViewPod
     }
 
     // --- Listeners ---
@@ -199,19 +213,19 @@ class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseView
         return true
     }
 
-    override fun onTapMovieFromBanner() {
-//        Snackbar.make(window.decorView, "Tapped Movie from Banner", Snackbar.LENGTH_SHORT).show()
-        startActivity(MovieDetailsActivity.newIntent(this))
+    override fun onTapMovieFromBanner(movieId: Int) {
+//        Snackbar.make(window.decorView, "Tapped Movie from Banner & Movie Id $movieId", Snackbar.LENGTH_SHORT).show()
+        startActivity(MovieDetailsActivity.newIntent(this, movieId))
     }
 
-    override fun onTapMovieFromShowcase() {
-//        Snackbar.make(window.decorView, "Tapped Movie from Showcase", Snackbar.LENGTH_SHORT).show()
-        startActivity(MovieDetailsActivity.newIntent(this))
+    override fun onTapMovieFromShowcase(movieId: Int) {
+//        Snackbar.make(window.decorView, "Tapped Movie from Showcase & Movie Id $movieId", Snackbar.LENGTH_SHORT).show()
+        startActivity(MovieDetailsActivity.newIntent(this, movieId))
     }
 
-    override fun onTapMovie() {
-//        Snackbar.make(window.decorView, "Tapped Movie from Best Popular Movies or Genres", Snackbar.LENGTH_SHORT).show()
-        startActivity(MovieDetailsActivity.newIntent(this))
+    override fun onTapMovie(movieId: Int) {
+//        Snackbar.make(window.decorView, "Tapped Movie from Best Popular Movies or Genres & Movie Id $movieId", Snackbar.LENGTH_SHORT).show()
+        startActivity(MovieDetailsActivity.newIntent(this, movieId))
     }
 
 }

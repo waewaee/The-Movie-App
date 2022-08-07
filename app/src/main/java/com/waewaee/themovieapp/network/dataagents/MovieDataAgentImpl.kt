@@ -4,6 +4,7 @@ import android.os.AsyncTask
 import android.os.AsyncTask.execute
 import android.util.Log
 import com.google.gson.Gson
+import com.waewaee.themovieapp.data.vos.ActorVO
 import com.waewaee.themovieapp.data.vos.GenreVO
 import com.waewaee.themovieapp.data.vos.MovieVO
 import com.waewaee.themovieapp.network.responses.MovieListResponse
@@ -111,5 +112,9 @@ object MovieDataAgentImpl: MovieDataAgent {
         onFailure: (String) -> Unit
     ) {
 
+    }
+
+    override fun getActors(onSuccess: (List<ActorVO>) -> Unit, onFailure: (String) -> Unit) {
+        //
     }
 }

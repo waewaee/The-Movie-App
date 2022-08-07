@@ -1,5 +1,6 @@
 package com.waewaee.themovieapp.data.models
 
+import com.waewaee.themovieapp.data.vos.ActorVO
 import com.waewaee.themovieapp.data.vos.GenreVO
 import com.waewaee.themovieapp.data.vos.MovieVO
 import com.waewaee.themovieapp.network.dataagents.MovieDataAgent
@@ -47,5 +48,12 @@ object MovieModelImpl: MovieModel {
             onSuccess = onSuccess,
             onFailure = onFailure
         )
+    }
+
+    override fun getActors(
+        onSuccess: (List<ActorVO>) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mMovieDataAgent.getActors(onSuccess = onSuccess, onFailure = onFailure)
     }
 }

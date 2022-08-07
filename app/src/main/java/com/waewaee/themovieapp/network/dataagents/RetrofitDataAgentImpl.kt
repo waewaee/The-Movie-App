@@ -1,15 +1,17 @@
 package com.waewaee.themovieapp.network.dataagents
 
+import com.waewaee.themovieapp.data.vos.GenreVO
 import com.waewaee.themovieapp.data.vos.MovieVO
 import com.waewaee.themovieapp.network.responses.MovieListResponse
 import com.waewaee.themovieapp.network.TheMovieApi
+import com.waewaee.themovieapp.network.responses.GetGenresResponse
 import com.waewaee.themovieapp.utils.BASE_URL
 import okhttp3.OkHttpClient
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-object RetrofitDataAgentImpl: MovieDataAgent {
+object RetrofitDataAgentImpl : MovieDataAgent {
 
     private var mTheMovieApi: TheMovieApi? = null
 
@@ -99,6 +101,57 @@ object RetrofitDataAgentImpl: MovieDataAgent {
 
                 override fun onFailure(call: Call<MovieListResponse>, t: Throwable) {
                     onFailure(t.message ?: "")
+                }
+
+            })
+    }
+
+    override fun getGenres(
+        onSuccess: (List<GenreVO>) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mTheMovieApi?.getGenres()
+            ?.enqueue(object : Callback<GetGenresResponse> {
+                override fun onResponse(
+                    call: Call<GetGenresResponse>,
+                    response: Response<GetGenresResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        onSuccess(response.body()?.genres ?: listOf())
+                    } else {
+                        onFailure(response.message())
+                    }
+                }
+
+                override fun onFailure(call: Call<GetGenresResponse>, t: Throwable) {
+                    onFailure(t.message ?: "")
+                }
+
+            })
+    }
+
+    override fun getMoviesByGenre(
+        genreId: String,
+        onSuccess: (List<MovieVO>) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mTheMovieApi?.getMoviesByGenre(genreId = genreId)
+            ?.enqueue(object : Callback<MovieListResponse> {
+                override fun onResponse(
+                    call: Call<MovieListResponse>,
+                    response: Response<MovieListResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        val movieList = response.body()?.results ?: listOf()
+                        onSuccess(movieList)
+                    } else {
+                        onFailure(response.message())
+                    }
+                }
+
+                override fun onFailure(call: Call<MovieListResponse>, t: Throwable) {
+                    onFailure(t.message ?: "")
+
                 }
 
             })

@@ -11,6 +11,7 @@ import com.waewaee.themovieapp.adapters.BannerAdapter
 import com.waewaee.themovieapp.adapters.ShowcaseAdapter
 import com.waewaee.themovieapp.data.models.MovieModel
 import com.waewaee.themovieapp.data.models.MovieModelImpl
+import com.waewaee.themovieapp.data.vos.GenreVO
 import com.waewaee.themovieapp.delegates.BannerViewHolderDelegate
 import com.waewaee.themovieapp.delegates.MovieViewHolderDelegate
 import com.waewaee.themovieapp.delegates.ShowcaseViewHolderDelegate
@@ -31,6 +32,9 @@ class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseView
     // Model
     private val mMovieModel: MovieModel = MovieModelImpl
 
+    // Data
+    private var mGenres: List<GenreVO>? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -38,7 +42,7 @@ class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseView
         setUpToolbar()
         setUpViewPods()
         setUpBannerViewPager()
-        setUpGenreTabLayout()
+//        setUpGenreTabLayout()
         setUpShowcaseRecyclerView()
         setUpListeners()
 
@@ -66,13 +70,14 @@ class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseView
         mMovieModel.getPopularMovies(
             onSuccess = {
                 mBestPopularMovieListViewPod.setData(it)
+                mMoviesByGenreViewPod.setData(it)
             },
             onFailure = {
                 // Show error msg
             }
         )
 
-    // Top Rated Movies
+        // Top Rated Movies
         mMovieModel.getTopRatedMovies(
             onSuccess = {
                 mShowcaseAdapter.setNewData(it)
@@ -82,6 +87,34 @@ class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseView
             }
         )
 
+        // Get Genres
+        mMovieModel.getGenres(
+            onSuccess = {
+                mGenres = it
+                setUpGenreTabLayout(it)
+
+                // Get Movies By Genre for First Genre
+                it.firstOrNull()?.id?.let { genreId ->
+                    getMoviesByGenre(genreId)
+                }
+            },
+            onFailure = {
+                // Show error msg
+            }
+        )
+
+    }
+
+    private fun getMoviesByGenre(genreId: Int) {
+        mMovieModel.getMoviesByGenre(
+            genreId = genreId.toString(),
+            onSuccess = {
+                mMoviesByGenreViewPod.setData(it)
+            },
+            onFailure = {
+                // Show error msg
+            }
+        )
     }
 
     // --- View Pods ---
@@ -99,7 +132,11 @@ class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseView
         // Genre Tab Layout
         tabLayoutGenre.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                Snackbar.make(window.decorView, tab?.text ?: "", Snackbar.LENGTH_SHORT).show()
+//                Snackbar.make(window.decorView, tab?.text ?: "", Snackbar.LENGTH_SHORT).show()
+
+                mGenres?.get(tab?.position ?: 0)?.id?.let {
+                    getMoviesByGenre(it)
+                }
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
@@ -128,15 +165,22 @@ class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseView
     }
 
     // --- Tab Layout ---
-    private fun setUpGenreTabLayout() {
-        dummyGenreList.forEach {
-//            val tab = tabLayoutGenre.newTab()
-//            tab.text = it
-//            tabLayoutGenre.addTab(tab)
+    private fun setUpGenreTabLayout(genreList: List<GenreVO>) {
+//        dummyGenreList.forEach {
+////            val tab = tabLayoutGenre.newTab()
+////            tab.text = it
+////            tabLayoutGenre.addTab(tab)
+//
+//            //Scope Function
+//            tabLayoutGenre.newTab().apply {
+//                text = it
+//                tabLayoutGenre.addTab(this)
+//            }
+//        }
 
-            //Scope Function
+        genreList.forEach {
             tabLayoutGenre.newTab().apply {
-                text = it
+                text = it.name
                 tabLayoutGenre.addTab(this)
             }
         }

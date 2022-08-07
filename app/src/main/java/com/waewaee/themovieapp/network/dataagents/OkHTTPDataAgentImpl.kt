@@ -2,6 +2,7 @@ package com.waewaee.themovieapp.network.dataagents
 
 import android.os.AsyncTask
 import com.google.gson.Gson
+import com.waewaee.themovieapp.data.vos.GenreVO
 import com.waewaee.themovieapp.data.vos.MovieVO
 import com.waewaee.themovieapp.network.responses.MovieListResponse
 import com.waewaee.themovieapp.utils.API_GET_NOW_PLAYING
@@ -32,6 +33,18 @@ object OkHTTPDataAgentImpl: MovieDataAgent {
     }
 
     override fun getTopRatedMovies(
+        onSuccess: (List<MovieVO>) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+
+    }
+
+    override fun getGenres(onSuccess: (List<GenreVO>) -> Unit, onFailure: (String) -> Unit) {
+
+    }
+
+    override fun getMoviesByGenre(
+        genreId: String,
         onSuccess: (List<MovieVO>) -> Unit,
         onFailure: (String) -> Unit
     ) {

@@ -71,10 +71,10 @@
 
             <include
                 android:id="@+id/vpBestPopularMovieList"
+                layout="@layout/view_pod_movie_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                layout="@layout/view_pod_movie_list"
-                android:layout_below="@id/tvBestPopularFilmsAndSerials"/>
+                android:layout_below="@id/tvBestPopularFilmsAndSerials" />
 
             <RelativeLayout
                 android:id="@+id/rlCheckMovieShowtime"

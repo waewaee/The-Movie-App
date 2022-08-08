@@ -44,8 +44,54 @@ data class MovieVO(
 
     @SerializedName("vote_count")
     val voteCount: Int?,
+
+    @SerializedName("belongs_to_collection")
+    val belongsToCollection: Boolean?,
+
+    @SerializedName("budget")
+    val budget: Int?,
+
+    @SerializedName("homepage")
+    val homePage: String?,
+
+    @SerializedName("imdb_id")
+    val imdbId: String?,
+
+    @SerializedName("genres")
+    val genres: List<GenreVO>?,
+
+    @SerializedName("production_companies")
+    val productionCompanies: List<ProductionCompanyVO>?,
+
+    @SerializedName("production_countries")
+    val productionCountries: List<ProductionCountryVO>?,
+
+    @SerializedName("revenue")
+    val revenue: Int,
+
+    @SerializedName("runtime")
+    val runtime: Int,
+
+    @SerializedName("spoken_languages")
+    val spokenLanguages: List<SpokenLanguageVO>?,
+
+    @SerializedName("status")
+    val status: String?,
+
+    @SerializedName("tagline")
+    val tagline: String?,
+
+
 ) {
     fun getRatingBasedOnFiveStars(): Float {
         return voteAverage?.div(2)?.toFloat() ?: 0.0f
+    }
+
+    fun getGenresAsCommaSeparatedString(): String {
+        return genres?.map { it.name }?.joinToString(",") ?: ""
+    }
+
+    fun getProductionCountriesAsCommaSeparatedString(): String {
+        return productionCountries?.map { it.name }?.joinToString(",") ?: ""
     }
 }

@@ -6,6 +6,7 @@ import com.waewaee.themovieapp.data.vos.MovieVO
 import com.waewaee.themovieapp.network.responses.MovieListResponse
 import com.waewaee.themovieapp.network.TheMovieApi
 import com.waewaee.themovieapp.network.responses.GetActorsResponse
+import com.waewaee.themovieapp.network.responses.GetCreditsByMovieResponse
 import com.waewaee.themovieapp.network.responses.GetGenresResponse
 import com.waewaee.themovieapp.utils.BASE_URL
 import okhttp3.OkHttpClient
@@ -177,6 +178,60 @@ object RetrofitDataAgentImpl : MovieDataAgent {
                 }
 
                 override fun onFailure(call: Call<GetActorsResponse>, t: Throwable) {
+                    onFailure(t.message ?: "")
+                }
+
+            })
+    }
+
+    override fun getMovieDetails(
+        movieId: String,
+        onSuccess: (MovieVO) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mTheMovieApi?.getMovieDetails(movieId = movieId)
+            ?.enqueue(object : Callback<MovieVO> {
+                override fun onResponse(
+                    call: Call<MovieVO>,
+                    response: Response<MovieVO>
+                ) {
+                    if (response.isSuccessful) {
+                        response.body()?.let {
+                            onSuccess(it)
+                        }
+                    } else {
+                        onFailure(response.message())
+                    }
+                }
+
+                override fun onFailure(call: Call<MovieVO>, t: Throwable) {
+                    onFailure(t.message ?: "")
+                }
+
+            })
+    }
+
+    override fun getCreditsByMovie(
+        movieId: String,
+        onSuccess: (Pair<List<ActorVO>, List<ActorVO>>) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        mTheMovieApi?.getCreditsByMovie(movieId = movieId)
+            ?.enqueue(object : Callback<GetCreditsByMovieResponse> {
+                override fun onResponse(
+                    call: Call<GetCreditsByMovieResponse>,
+                    response: Response<GetCreditsByMovieResponse>
+                ) {
+                    if (response.isSuccessful) {
+                        response.body()?.let {
+                            onSuccess( Pair(it.cast ?: listOf(), it.crew ?: listOf()) )
+                        }
+                    } else {
+                        onFailure(response.message())
+                    }
+                }
+
+                override fun onFailure(call: Call<GetCreditsByMovieResponse>, t: Throwable) {
                     onFailure(t.message ?: "")
                 }
 

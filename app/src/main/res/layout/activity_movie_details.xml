@@ -47,6 +47,7 @@
                 android:layout_marginTop="@dimen/margin_xlarge"/>
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivMovieImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:src="@drawable/stranger_things_image"
@@ -77,6 +78,7 @@
                     android:layout_marginBottom="@dimen/margin_medium_3"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvReleaseYear"
                     android:layout_width="@dimen/width_release_year"
                     android:layout_height="@dimen/margin_xlarge"
                     android:layout_above="@id/tvMovieName"
@@ -91,37 +93,38 @@
                     android:id="@+id/tvRating"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_above="@id/tvMovieName"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="@dimen/margin_medium_2"
+                    android:layout_marginBottom="@dimen/margin_medium"
                     android:text="9,75"
                     android:textColor="@color/white"
-                    android:textSize="@dimen/text_big"
-                    android:layout_alignParentEnd="true"
-                    android:layout_above="@id/tvMovieName"
-                    android:layout_marginEnd="@dimen/margin_medium_2"
-                    android:layout_marginBottom="@dimen/margin_medium"/>
+                    android:textSize="@dimen/text_big" />
 
                 <RatingBar
+                    android:id="@+id/rbMovieRating"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:numStars="5"
-                    android:rating="5"
-                    style="@style/Widget.AppCompat.RatingBar.Small"
-                    android:layout_toStartOf="@id/tvRating"
                     android:layout_alignTop="@id/tvRating"
                     android:layout_marginTop="@dimen/margin_medium_2"
-                    android:layout_marginEnd="@dimen/margin_medium"/>
+                    android:layout_marginEnd="@dimen/margin_medium"
+                    android:layout_toStartOf="@id/tvRating"
+                    android:numStars="5"
+                    android:rating="5" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/tvNoOfRating"
+                    android:id="@+id/tvNoOfVotes"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="388876 VOTES"
-                    android:textColor="@color/md_grey_500"
-                    android:textStyle="bold"
-                    android:textSize="@dimen/text_small"
-                    android:layout_toStartOf="@id/tvRating"
                     android:layout_above="@id/tvMovieName"
                     android:layout_marginEnd="@dimen/margin_medium"
-                    android:layout_marginBottom="@dimen/margin_card_medium_2"/>
+                    android:layout_marginBottom="@dimen/margin_card_medium_2"
+                    android:layout_toStartOf="@id/tvRating"
+                    android:text="388876 VOTES"
+                    android:textColor="@color/md_grey_500"
+                    android:textSize="@dimen/text_small"
+                    android:textStyle="bold" />
 
 
             </RelativeLayout>
@@ -155,22 +158,22 @@
                 android:paddingTop="@dimen/margin_small"/>
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvTime"
+                android:id="@+id/tvDuration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/margin_medium"
                 android:layout_toEndOf="@id/ivTime"
+                android:paddingTop="@dimen/margin_medium"
                 android:text="2hr 13min"
                 android:textColor="@color/md_grey_500"
-                android:textStyle="bold"
-                android:layout_marginStart="@dimen/margin_medium"
-                android:paddingTop="@dimen/margin_medium"/>
+                android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvFirstGenre"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/margin_xlarge"
                 android:layout_marginStart="@dimen/margin_medium"
-                android:layout_toEndOf="@id/tvTime"
+                android:layout_toEndOf="@id/tvDuration"
                 android:background="@drawable/background_round_genre_chip"
                 android:gravity="center"
                 android:paddingHorizontal="@dimen/margin_medium"
@@ -214,24 +217,24 @@
                 android:id="@+id/tvTitleStoryline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/lbl_storyline"
-                android:textColor="@color/secondary_text"
-                android:textStyle="bold"
                 android:layout_below="@id/ivTime"
                 android:layout_marginStart="@dimen/margin_medium_2"
-                android:layout_marginTop="@dimen/margin_medium_3"/>
+                android:layout_marginTop="@dimen/margin_medium_3"
+                android:text="@string/lbl_storyline"
+                android:textColor="@color/secondary_text"
+                android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tvOverview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/lbl_movie_overview"
-                android:textColor="@color/secondary_text"
-                android:textStyle="bold"
                 android:layout_below="@id/tvTitleStoryline"
                 android:layout_marginStart="@dimen/margin_medium_2"
+                android:layout_marginTop="@dimen/margin_card_medium_2"
                 android:layout_marginEnd="@dimen/margin_medium_2"
-                android:layout_marginTop="@dimen/margin_card_medium_2"/>
+                android:text="@string/lbl_movie_overview"
+                android:textColor="@color/secondary_text"
+                android:textStyle="bold" />
 
             <RelativeLayout
                 android:id="@+id/btnPlayTrailer"

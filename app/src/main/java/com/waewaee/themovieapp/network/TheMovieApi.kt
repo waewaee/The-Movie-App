@@ -1,11 +1,14 @@
 package com.waewaee.themovieapp.network
 
+import com.waewaee.themovieapp.data.vos.MovieVO
 import com.waewaee.themovieapp.network.responses.GetActorsResponse
+import com.waewaee.themovieapp.network.responses.GetCreditsByMovieResponse
 import com.waewaee.themovieapp.network.responses.GetGenresResponse
 import com.waewaee.themovieapp.network.responses.MovieListResponse
 import com.waewaee.themovieapp.utils.*
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface TheMovieApi {
@@ -44,5 +47,18 @@ interface TheMovieApi {
         @Query(PARAM_API_KEY) apiKey: String = MOVIE_API_KEY,
         @Query(PARAM_PAGE) page: Int = 1,
     ) : Call<GetActorsResponse>
+
+    @GET("$API_GET_MOVIE_DETAILS/{movie_id}")
+    fun getMovieDetails(
+        @Path("movie_id") movieId: String,
+        @Query(PARAM_API_KEY) apiKey: String = MOVIE_API_KEY,
+    ) : Call<MovieVO>
+
+    @GET("$API_GET_CREDITS_BY_MOVIE/{movie_id}/credits")
+    fun getCreditsByMovie(
+        @Path("movie_id") movieId: String,
+        @Query(PARAM_API_KEY) apiKey: String = MOVIE_API_KEY,
+        @Query(PARAM_PAGE) page: Int = 1,
+    ) : Call<GetCreditsByMovieResponse>
 
 }

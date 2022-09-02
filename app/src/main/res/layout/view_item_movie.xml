@@ -17,12 +17,12 @@
         android:id="@+id/tvMovieName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/ivMovieImage"
+        android:layout_marginTop="@dimen/margin_card_medium_2"
         android:text="Spider Man"
-        android:textStyle="bold"
         android:textColor="@color/white"
         android:textSize="@dimen/text_regular_2x"
-        android:layout_below="@id/ivMovieImage"
-        android:layout_marginTop="@dimen/margin_card_medium_2"/>
+        android:textStyle="bold" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/tvMovieRating"

@@ -123,7 +123,7 @@ data class MovieVO(
     val tagline: String?,
 
     @ColumnInfo(name = "type")
-    val type: String?= "",
+    var type: String?= "",
 
 ) {
     fun getRatingBasedOnFiveStars(): Float {

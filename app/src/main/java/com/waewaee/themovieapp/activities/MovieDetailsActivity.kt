@@ -52,13 +52,17 @@ class MovieDetailsActivity : AppCompatActivity() {
     private fun requestData(movieId: Int) {
         mMovieModel.getMovieDetails(
             movieId = movieId.toString(),
-            onSuccess = {
-                bindData(it)
-            },
+//            onSuccess = {
+//                bindData(it)
+//            },
             onFailure = {
                 // Show error msg
             }
-        )
+        )?.observe(this) {
+            it?.let {
+                bindData(it)
+            }
+        }
 
         mMovieModel.getCreditsByMovie(
             movieId = movieId.toString(),

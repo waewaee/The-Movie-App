@@ -60,34 +60,40 @@ class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseView
 //        OkHTTPDataAgentImpl.getNowPlayingMovies()
 
         mMovieModel.getNowPlayingMovies(
-            onSuccess = {
-                mBannerAdapter.setNewData(it)
-            },
+//            onSuccess = {
+//                mBannerAdapter.setNewData(it)
+//            },
             onFailure = {
                 // Show Error Msg
             }
-        )
+        )?.observe(this) {
+            mBannerAdapter.setNewData(it)
+        }
 
         // Popular Movies
         mMovieModel.getPopularMovies(
-            onSuccess = {
-                mBestPopularMovieListViewPod.setData(it)
-//                mMoviesByGenreViewPod.setData(it)
-            },
+//            onSuccess = {
+//                mBestPopularMovieListViewPod.setData(it)
+//                mMoviesByGenreViewPod.setData(it) <-- this one is for testing
+//            },
             onFailure = {
                 // Show error msg
             }
-        )
+        )?.observe(this) {
+            mBestPopularMovieListViewPod.setData(it)
+        }
 
         // Top Rated Movies
         mMovieModel.getTopRatedMovies(
-            onSuccess = {
-                mShowcaseAdapter.setNewData(it)
-            },
+//            onSuccess = {
+//                mShowcaseAdapter.setNewData(it)
+//            },
             onFailure = {
                 // Show error msg
             }
-        )
+        )?.observe(this) {
+            mShowcaseAdapter.setNewData(it)
+        }
 
         // Get Genres
         mMovieModel.getGenres(

@@ -1,5 +1,6 @@
 package com.waewaee.themovieapp.data.models
 
+import androidx.lifecycle.LiveData
 import com.waewaee.themovieapp.data.vos.*
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -17,11 +18,11 @@ object MovieModelImpl: BaseModel(), MovieModel {
 //    }
 
     override fun getNowPlayingMovies(
-        onSuccess: (List<MovieVO>) -> Unit,
+//        onSuccess: (List<MovieVO>) -> Unit,
         onFailure: (String) -> Unit
-    ) {
+    ) : LiveData<List<MovieVO>>? {
         // Database
-        onSuccess(mMovieDatabase?.movieDao()?.getMoviesByType(type = NOW_PLAYING) ?: listOf())
+//        onSuccess(mMovieDatabase?.movieDao()?.getMoviesByType(type = NOW_PLAYING) ?: listOf())
 
         // Network
 //        mMovieDataAgent.getNowPlayingMovies(onSuccess = {
@@ -39,17 +40,19 @@ object MovieModelImpl: BaseModel(), MovieModel {
                 it.results?.forEach { movie -> movie.type = NOW_PLAYING }
                 mMovieDatabase?.movieDao()?.insertMovies(it.results ?: listOf())
 
-                onSuccess(it.results ?: listOf())
+//                onSuccess(it.results ?: listOf())
             }, {
                 onFailure(it.localizedMessage ?: "")
             })
+
+        return mMovieDatabase?.movieDao()?.getMoviesByType(type = NOW_PLAYING)
     }
 
     override fun getPopularMovies(
-        onSuccess: (List<MovieVO>) -> Unit,
+//        onSuccess: (List<MovieVO>) -> Unit,
         onFailure: (String) -> Unit
-    ) {
-        onSuccess(mMovieDatabase?.movieDao()?.getMoviesByType(type = POPULAR) ?: listOf())
+    ) : LiveData<List<MovieVO>>? {
+//        onSuccess(mMovieDatabase?.movieDao()?.getMoviesByType(type = POPULAR) ?: listOf())
 
 //        mMovieDataAgent.getPopularMovies(onSuccess = {
 //
@@ -66,17 +69,19 @@ object MovieModelImpl: BaseModel(), MovieModel {
                 it.results?.forEach { movie -> movie.type= POPULAR }
                 mMovieDatabase?.movieDao()?.insertMovies(it.results ?: listOf())
 
-                onSuccess(it.results ?: listOf())
+//                onSuccess(it.results ?: listOf())
             }, {
                 onFailure(it.localizedMessage ?: "")
             })
+
+        return mMovieDatabase?.movieDao()?.getMoviesByType(type = POPULAR)
     }
 
     override fun getTopRatedMovies(
-        onSuccess: (List<MovieVO>) -> Unit,
+//        onSuccess: (List<MovieVO>) -> Unit,
         onFailure: (String) -> Unit
-    ) {
-        onSuccess(mMovieDatabase?.movieDao()?.getMoviesByType(type = TOP_RATED) ?: listOf())
+    ) : LiveData<List<MovieVO>>? {
+//        onSuccess(mMovieDatabase?.movieDao()?.getMoviesByType(type = TOP_RATED) ?: listOf())
 
 //        mMovieDataAgent.getTopRatedMovies(onSuccess = {
 //
@@ -93,10 +98,12 @@ object MovieModelImpl: BaseModel(), MovieModel {
                 it.results?.forEach { movie -> movie.type= TOP_RATED }
                 mMovieDatabase?.movieDao()?.insertMovies(it.results ?: listOf())
 
-                onSuccess(it.results ?: listOf())
+//                onSuccess(it.results ?: listOf())
             }, {
                 onFailure(it.localizedMessage ?: "")
             })
+
+        return mMovieDatabase?.movieDao()?.getMoviesByType(type = TOP_RATED)
     }
 
     override fun getGenres(
@@ -154,14 +161,14 @@ object MovieModelImpl: BaseModel(), MovieModel {
 
     override fun getMovieDetails(
         movieId: String,
-        onSuccess: (MovieVO) -> Unit,
+//        onSuccess: (MovieVO) -> Unit,
         onFailure: (String) -> Unit
-    ) {
+    ) : LiveData<MovieVO?>? {
         // Database
-        val movieFromDatabase = mMovieDatabase?.movieDao()?.getMovieById(movieId = movieId.toInt())
-        movieFromDatabase?.let {
-            onSuccess(it)
-        }
+//        val movieFromDatabase = mMovieDatabase?.movieDao()?.getMovieByIdOneTime(movieId = movieId.toInt())
+//        movieFromDatabase?.let {
+//            onSuccess(it)
+//        }
 
         // Network
 //        mMovieDataAgent.getMovieDetails(
@@ -182,15 +189,17 @@ object MovieModelImpl: BaseModel(), MovieModel {
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(AndroidSchedulers.mainThread())
             ?.subscribe({
-                val movieFromDatabaseToSync = mMovieDatabase?.movieDao()?.getMovieById(movieId = movieId.toInt())
+                val movieFromDatabaseToSync = mMovieDatabase?.movieDao()?.getMovieByIdOneTime(movieId = movieId.toInt())
                 it.type = movieFromDatabaseToSync?.type
 
                 mMovieDatabase?.movieDao()?.insertSingleMovie(it)
 
-                onSuccess(it)
+//                onSuccess(it)
             }, {
                 onFailure(it.localizedMessage ?: "")
             })
+
+        return mMovieDatabase?.movieDao()?.getMovieById(movieId = movieId.toInt())
     }
 
     override fun getCreditsByMovie(

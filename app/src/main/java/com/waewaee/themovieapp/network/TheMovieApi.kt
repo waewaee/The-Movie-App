@@ -62,4 +62,10 @@ interface TheMovieApi {
         @Query(PARAM_PAGE) page: Int = 1,
     ) : Observable<GetCreditsByMovieResponse>
 
+    @GET(API_SEARCH_MOVIE)
+    fun searchMovie(
+        @Query(PARAM_API_KEY) apiKey: String = MOVIE_API_KEY,
+        @Query(PARAM_QUERY) query: String,
+    ) : Observable<MovieListResponse>
+
 }

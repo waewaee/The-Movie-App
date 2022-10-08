@@ -18,11 +18,12 @@ import com.waewaee.themovieapp.data.vos.MovieVO
 import com.waewaee.themovieapp.mvp.presenters.MovieDetailsPresenter
 import com.waewaee.themovieapp.mvp.presenters.MovieDetailsPresenterImpl
 import com.waewaee.themovieapp.mvp.views.MovieDetailsView
+import com.waewaee.themovieapp.mvvm.MovieDetailsViewModel
 import com.waewaee.themovieapp.utils.IMAGE_BASE_URL
 import com.waewaee.themovieapp.views.pods.ActorListViewPod
 import kotlinx.android.synthetic.main.activity_movie_details.*
 
-class MovieDetailsActivity : AppCompatActivity(), MovieDetailsView {
+class MovieDetailsActivity : AppCompatActivity() {
 
     companion object {
 
@@ -39,28 +40,35 @@ class MovieDetailsActivity : AppCompatActivity(), MovieDetailsView {
     lateinit var actorsViewPod: ActorListViewPod
     lateinit var creatorsViewPod: ActorListViewPod
 
-    // Presenter
-    private lateinit var mPresenter: MovieDetailsPresenter
+    // View Model
+    lateinit var mViewModel: MovieDetailsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_movie_details)
 
-        setUpPresenter()
+        val movieId = intent?.getIntExtra(EXTRA_MOVIE_ID, 0)
+        movieId?.let {
+            setUpViewModel(it)
+        }
 
         setUpViewPods()
         setUpListeners()
+        observeLiveData()
 
-        val movieId = intent?.getIntExtra(EXTRA_MOVIE_ID, 0)
-//        Snackbar.make(window.decorView, "$movieId", Snackbar.LENGTH_SHORT).show()
-        movieId?.let {
-            mPresenter.onUiReadyInMovieDetails(this, movieId)
-        }
     }
 
-    private fun setUpPresenter() {
-        mPresenter = ViewModelProvider(this)[MovieDetailsPresenterImpl::class.java]
-        mPresenter.initView(this)
+    private fun observeLiveData() {
+        mViewModel.movieDetailsLiveData?.observe(this) {
+            it?.let { movie -> bindData(movie) }
+        }
+        mViewModel.castLiveData.observe(this, actorsViewPod::setData)
+        mViewModel.crewLiveData.observe(this, creatorsViewPod::setData)
+    }
+
+    private fun setUpViewModel(movieId: Int) {
+        mViewModel = ViewModelProvider(this)[MovieDetailsViewModel::class.java]
+        mViewModel.getInitialData(movieId)
     }
 
     private fun bindData(movie: MovieVO) {
@@ -124,22 +132,5 @@ class MovieDetailsActivity : AppCompatActivity(), MovieDetailsView {
             moreTitleText = getString(R.string.lbl_more_creators)
 
         )
-    }
-
-    override fun showMovieDetails(movie: MovieVO) {
-        bindData(movie)
-    }
-
-    override fun showCreditsByMovie(cast: List<ActorVO>, crew: List<ActorVO>) {
-        actorsViewPod.setData(cast)
-        creatorsViewPod.setData(crew)
-    }
-
-    override fun navigateBack() {
-        finish()
-    }
-
-    override fun showError(errorString: String) {
-        Snackbar.make(window.decorView, errorString, Snackbar.LENGTH_SHORT).show()
     }
 }

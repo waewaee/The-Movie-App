@@ -4,12 +4,14 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import com.waewaee.themovieapp.data.models.MovieModel
 import com.waewaee.themovieapp.data.models.MovieModelImpl
+import com.waewaee.themovieapp.interactors.MovieIneractorImpl
+import com.waewaee.themovieapp.interactors.MovieInteractor
 import com.waewaee.themovieapp.mvp.views.MovieDetailsView
 
 class MovieDetailsPresenterImpl: ViewModel() ,MovieDetailsPresenter {
 
     // Model
-    private val mMovieModel: MovieModel = MovieModelImpl
+    private val mMovieInteractor: MovieInteractor = MovieIneractorImpl
 
     // View
     private var mView: MovieDetailsView? = null
@@ -20,7 +22,7 @@ class MovieDetailsPresenterImpl: ViewModel() ,MovieDetailsPresenter {
 
     override fun onUiReadyInMovieDetails(owner: LifecycleOwner, movieId: Int) {
         // Movie Details
-        mMovieModel.getMovieDetails(movieId = movieId.toString()) {
+        mMovieInteractor.getMovieDetails(movieId = movieId.toString()) {
             mView?.showError(it)
         }?.observe(owner) {
             it?.let {
@@ -29,7 +31,7 @@ class MovieDetailsPresenterImpl: ViewModel() ,MovieDetailsPresenter {
         }
 
         // Credits
-        mMovieModel.getCreditsByMovie(
+        mMovieInteractor.getCreditsByMovie(
             movieId = movieId.toString(),
             onSuccess = {
                 mView?.showCreditsByMovie(cast = it.first, crew = it.second)

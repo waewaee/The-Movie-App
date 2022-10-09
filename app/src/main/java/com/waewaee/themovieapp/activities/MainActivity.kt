@@ -25,6 +25,8 @@ import com.waewaee.themovieapp.mvp.presenters.MainPresenterImpl
 import com.waewaee.themovieapp.mvp.views.MainView
 import com.waewaee.themovieapp.network.dataagents.MovieDataAgentImpl
 import com.waewaee.themovieapp.network.dataagents.OkHTTPDataAgentImpl
+import com.waewaee.themovieapp.routers.navigateToMovieDetailsActivity
+import com.waewaee.themovieapp.routers.navigateToMovieSearchActivity
 import com.waewaee.themovieapp.views.pods.ActorListViewPod
 import com.waewaee.themovieapp.views.pods.MovieListViewPod
 import kotlinx.android.synthetic.main.activity_main.*
@@ -133,7 +135,7 @@ class MainActivity : AppCompatActivity(), MainView {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
-            R.id.actionSearch -> startActivity(MovieSearchActivity.newIntent(this))
+            R.id.actionSearch -> navigateToMovieSearchActivity()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -163,7 +165,7 @@ class MainActivity : AppCompatActivity(), MainView {
     }
 
     override fun navigateToMovieDetailsScreen(movieId: Int) {
-        startActivity(MovieDetailsActivity.newIntent(this, movieId = movieId))
+        navigateToMovieDetailsActivity(movieId)
     }
 
     override fun showError(errorString: String) {

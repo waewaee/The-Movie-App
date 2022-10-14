@@ -58,6 +58,7 @@ dependencies {
     implementation 'androidx.room:room-common:2.4.3'
     implementation 'androidx.room:room-ktx:2.4.3'
     kapt 'androidx.room:room-compiler:2.4.3'
+    implementation 'androidx.room:room-rxjava3:2.4.3'
 
     // RxKotlin
     implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
@@ -70,6 +71,9 @@ dependencies {
 
     // Live Data
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
+
+    // Live Data Reactive Streams
+    implementation 'androidx.lifecycle:lifecycle-reactivestreams-ktx:2.5.1'
 
     // View Model
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'

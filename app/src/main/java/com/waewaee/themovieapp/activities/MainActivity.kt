@@ -6,31 +6,23 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.waewaee.themovieapp.R
 import com.waewaee.themovieapp.adapters.BannerAdapter
 import com.waewaee.themovieapp.adapters.ShowcaseAdapter
-import com.waewaee.themovieapp.data.models.MovieModel
-import com.waewaee.themovieapp.data.models.MovieModelImpl
-import com.waewaee.themovieapp.data.vos.ActorVO
 import com.waewaee.themovieapp.data.vos.GenreVO
-import com.waewaee.themovieapp.data.vos.MovieVO
 import com.waewaee.themovieapp.delegates.BannerViewHolderDelegate
 import com.waewaee.themovieapp.delegates.MovieViewHolderDelegate
 import com.waewaee.themovieapp.delegates.ShowcaseViewHolderDelegate
-import com.waewaee.themovieapp.dummy.dummyGenreList
-import com.waewaee.themovieapp.mvp.presenters.MainPresenter
-import com.waewaee.themovieapp.mvp.presenters.MainPresenterImpl
-import com.waewaee.themovieapp.mvp.views.MainView
-import com.waewaee.themovieapp.mvvm.MainViewModel
-import com.waewaee.themovieapp.network.dataagents.MovieDataAgentImpl
-import com.waewaee.themovieapp.network.dataagents.OkHTTPDataAgentImpl
+import com.waewaee.themovieapp.mvi.intents.MainIntent
+import com.waewaee.themovieapp.mvi.mvibase.MVIView
+import com.waewaee.themovieapp.mvi.states.MainState
+import com.waewaee.themovieapp.mvi.viewmodels.MainViewModel
 import com.waewaee.themovieapp.views.pods.ActorListViewPod
 import com.waewaee.themovieapp.views.pods.MovieListViewPod
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseViewHolderDelegate, MovieViewHolderDelegate {
+class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseViewHolderDelegate, MovieViewHolderDelegate, MVIView<MainState> {
 
     // View Pods
     lateinit var mBannerAdapter: BannerAdapter
@@ -47,6 +39,7 @@ class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseView
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // Set Up View Model
         setUpViewModel()
 
         setUpToolbar()
@@ -55,22 +48,21 @@ class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseView
         setUpShowcaseRecyclerView()
         setUpListeners()
 
-        // Observe Live Data
-        observeLiveData()
+        // Set Initial Intents
+        setInitialIntents()
+        observeState()
+    }
+
+    private fun observeState() {
+        mViewModel.state.observe(this, this::render)
+    }
+
+    private fun setInitialIntents() {
+        mViewModel.processIntent(MainIntent.LoadAllHomePageData, this)
     }
 
     private fun setUpViewModel() {
         mViewModel = ViewModelProvider(this)[MainViewModel::class.java]
-        mViewModel.getInitialData()
-    }
-
-    private fun observeLiveData() {
-        mViewModel.nowPlayingMoviesLiveData?.observe(this, mBannerAdapter::setNewData)
-        mViewModel.popularMoviesLiveData?.observe(this, mBestPopularMovieListViewPod::setData)
-        mViewModel.topRatedMoviesLiveData?.observe(this, mShowcaseAdapter::setNewData)
-        mViewModel.genresLiveData.observe(this, this::setUpGenreTabLayout)
-        mViewModel.moviesByGenreLiveData.observe(this, mMoviesByGenreViewPod::setData)
-        mViewModel.actorsLiveData.observe(this, mActorListViewPod::setData)
     }
 
     // --- View Pods ---
@@ -90,7 +82,10 @@ class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseView
         // Genre Tab Layout
         tabLayoutGenre.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener{
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                mViewModel.getMovieByGenre(tab?.position ?: 0)
+                mViewModel.processIntent(
+                    MainIntent.LoadMoviesByGenreIntent(tab?.position ?: 0),
+                    this@MainActivity
+                )
             }
 
             override fun onTabUnselected(tab: TabLayout.Tab?) {
@@ -158,6 +153,10 @@ class MainActivity : AppCompatActivity(), BannerViewHolderDelegate, ShowcaseView
 
     override fun onTapMovieFromShowcase(movieId: Int) {
         startActivity(MovieDetailsActivity.newIntent(this, movieId = movieId))
+    }
+
+    override fun render(state: MainState) {
+
     }
 
 }

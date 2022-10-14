@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.waewaee.themovieapp.data.vos.MovieVO
+import io.reactivex.rxjava3.core.Flowable
 
 @Dao
 interface MovieDao {
@@ -29,4 +30,10 @@ interface MovieDao {
 
     @Query("DELETE FROM movies")
     fun deleteAllMovies()
+
+    @Query("SELECT * FROM movies WHERE id = :movieId")
+    fun getMovieByIdFlowable(movieId: Int) : Flowable<MovieVO?>
+
+    @Query("SELECT * FROM movies WHERE type = :type")
+    fun getMoviesByTypeFlowable(type: String) : Flowable<List<MovieVO>>
 }
